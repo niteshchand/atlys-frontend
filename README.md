@@ -59,7 +59,7 @@ Visit 👉 http://localhost:3000
 🌍 Live Demo
 
 Deployed on Vercel
- → https://atlys-frontend.vercel.app
+ → https://atlys-frontend-wine.vercel.app
 
 ✨ Notes
 
