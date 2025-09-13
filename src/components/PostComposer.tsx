@@ -21,10 +21,10 @@ const router = useRouter();
 
 
 
-  const exec = (command: string, value: string | null = null) => {
-    document.execCommand(command, false, value);
-    updateContent();
-  };
+const exec = (command: string, value?: string) => {
+  document.execCommand(command, false, value);
+  updateContent();
+};
 
  const insertEmoji = (emoji: string) => {
   if (!userEmail) {

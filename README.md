@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Atlys Frontend Assignment
 
-## Getting Started
+This project is built as part of the Atlys Frontend Hiring Task.
+It implements an auth flow (Sign In, Sign Up) and Feed page based on the provided Figma design.
 
-First, run the development server:
+🚀 Tech Stack
 
-```bash
+Next.js 15 (with App Router)
+
+TypeScript
+
+TailwindCSS
+
+Framer Motion (for smooth animations)
+
+🔑 Features
+
+Feed page with:
+
+Post composer (create new posts).
+
+Display of published posts.
+
+Interaction buttons (non-functional → show alert).
+
+Authentication flow:
+
+Sign In / Sign Up pages.
+
+Users redirected to /feed after login.
+
+Test accounts:
+
+demo@example.com / password123  
+test@user.com / testpass
+
+
+For unauthenticated users:
+
+Any feed interaction triggers Sign In modal.
+
+🛠 Getting Started
+
+Clone the repo and install dependencies:
+
+git clone https://github.com/niteshchand/atlys-frontend.git
+cd atlys-frontend
+npm install
+
+
+Run the dev server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit 👉 http://localhost:3000
+.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🌍 Live Demo
 
-## Learn More
+Deployed on Vercel
+ → https://atlys-frontend.vercel.app
 
-To learn more about Next.js, take a look at the following resources:
+✨ Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project focuses only on frontend — no real backend or database.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Post publishing works locally (in-memory state).
