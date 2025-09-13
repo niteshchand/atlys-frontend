@@ -1,103 +1,101 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import PostComposer from "@/components/PostComposer";
+import PostCard, { Post } from "@/components/PostCard";
+
+export default function FeedPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  // Dummy posts preloaded
+  const [posts, setPosts] = useState<Post[]>([
+    {
+      id: 1,
+      author: "demo@example.com",
+      content: "Excited to explore Atlys' mission to make travel seamless 🌍✈️",
+      createdAt: "Sep 8, 2025, 10:15 AM",
+      emoji: <span>🌍</span>,
+    },
+    {
+      id: 2,
+      author: "test@user.com",
+      content:
+        "Just finished setting up my Next.js project with TailwindCSS. Loving the workflow so far 💻🚀",
+      createdAt: "Sep 7, 2025, 5:42 PM",
+      emoji: <span>🚀</span>,
+    },
+    {
+      id: 3,
+      author: "demo@example.com",
+      content: "Happy weekend everyone! 🎉",
+      createdAt: "Sep 6, 2025, 8:30 AM",
+      emoji: <span>😎</span>,
+    },
+  ]);
+
+  const handlePublish = (content: string) => {
+    const post: Post = {
+      id: Date.now(),
+      author: user?.email || "Anonymous",
+      content,
+      createdAt: new Date().toLocaleString("en-US", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }),
+    };
+    setPosts([post, ...posts]); // prepend new post
+  };
+  console.log(posts);
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-white py-10 px-4">
+      {/* Login Button */}
+      {user?.email ? (
+        <h1 className="absolute top-4 right-4 bg-500 text-black cursor-pointer py-1 px-3 rounded transition text-sm flex items-center justify-center">
+          Welcome {user.email} !
+        </h1>
+      ) : (
+        <button
+          onClick={() => router.push("/signin")}
+          className="absolute top-4 right-4 bg-500 text-black cursor-pointer py-1 px-3 rounded transition text-sm flex items-center justify-center"
+        >
+          Login{" "}
+          <div>
+            <svg
+              className="w-6 h-6 text-gray-800 dark:text-black"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"
+              />
+            </svg>
+          </div>
+        </button>
+      )}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <div className="max-w-2xl mx-auto space-y-6">
+        {/* Composer */}
+        <PostComposer
+          userEmail={user?.email ?? null}
+          onPublish={handlePublish}
+        />
+
+        {/* Feed */}
+        {posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }
