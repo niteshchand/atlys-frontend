@@ -1,47 +1,47 @@
 Atlys Frontend Assignment
 
-This project is built as part of the Atlys Frontend Hiring Task.
-It implements an auth flow (Sign In, Sign Up) and Feed page based on the provided Figma design.
+This project was built as part of the Atlys Frontend Hiring Task.
+It implements an authentication flow (Sign In / Sign Up) and a Feed page inspired by the provided Figma design.
 
 🚀 Tech Stack
 
-Next.js 15 (with App Router)
+Next.js 15 (App Router)
 
 TypeScript
 
 TailwindCSS
 
-Framer Motion (for smooth animations)
+Framer Motion (animations)
 
 🔑 Features
 
-Feed page with:
-
-Post composer (create new posts).
-
-Display of published posts.
-
-Interaction buttons (non-functional → show alert).
-
-Authentication flow:
+Authentication
 
 Sign In / Sign Up pages.
 
-Users redirected to /feed after login.
+Redirect to /feed after login.
 
 Test accounts:
 
-demo@example.com / password123  
+demo@example.com / password123
+
 test@user.com / testpass
 
+Feed Page
 
-For unauthenticated users:
+Post composer (create new posts).
+
+Published posts displayed instantly.
+
+Interaction buttons (Like, Comment, Share → currently show alerts).
+
+Unauthenticated Users
 
 Any feed interaction triggers Sign In modal.
 
 🛠 Getting Started
 
-Clone the repo and install dependencies:
+Clone and install:
 
 git clone https://github.com/niteshchand/atlys-frontend.git
 cd atlys-frontend
@@ -54,15 +54,14 @@ npm run dev
 
 
 Visit 👉 http://localhost:3000
-.
 
 🌍 Live Demo
 
-Deployed on Vercel
- → https://atlys-frontend-wine.vercel.app
+Deployed on Vercel:
+👉 https://atlys-frontend-wine.vercel.app
 
 ✨ Notes
 
-This project focuses only on frontend — no real backend or database.
+This project focuses only on the frontend.
 
-Post publishing works locally (in-memory state).
+Post publishing works in local state only (no real backend).
